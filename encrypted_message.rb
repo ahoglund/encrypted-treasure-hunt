@@ -1,5 +1,3 @@
-require 'pry'
-
 class EncryptedMessage
   ALPHA = (:a..:z).to_a
   OMEGA = [ :e, :l, :v, :p, :o, :d, :c, :t, :y, :j, :r, :n, :h,
@@ -12,7 +10,7 @@ class EncryptedMessage
     omega   = OMEGA.rotate(OMEGA.index(key[1]))
     process_cipher(message, alpha, omega)
 
-    encrypted_msg = process_cipher(message, omega, alpha)
+    encrypted_msg = process_cipher(message, alpha, omega)
 
     { message: encrypted_msg,
       key:     "#{alpha[0]}:#{omega[0]}" }
@@ -50,8 +48,3 @@ class EncryptedMessage
    [ALPHA[rand(0..25)], OMEGA[rand(0..25)]]
   end
 end
-
-
-e = EncryptedMessage.new
-puts e.encrypt("this is it")
-puts e.decrypt("zdca ca cz", "s:a")

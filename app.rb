@@ -1,7 +1,13 @@
 require 'sinatra'
-require 'encrypted_message'
+require_relative 'encrypted_message'
 
 get "/encrypt/:message" do
   message = params['message']
-  { message: EncryptedMessage.new.encrypt(message) }.to_json
+  EncryptedMessage.new.encrypt(message).to_json
+end
+
+get "/decrypt/:message/:key" do
+  message = params['message']
+  key     = params['key']
+  EncryptedMessage.new.decrypt(message, key).to_json
 end
