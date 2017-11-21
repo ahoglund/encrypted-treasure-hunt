@@ -1,5 +1,7 @@
 require 'sinatra'
+require 'encrypted_message'
 
-get "/" do
-  { status: "success" }.to_json
+get "/encrypt/:message" do
+  message = params['message']
+  { message: EncryptedMessage.new.encrypt(message) }.to_json
 end
