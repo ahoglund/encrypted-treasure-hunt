@@ -1,5 +1,5 @@
 require 'sinatra'
 
 get "/" do
-  { status: "success" }
+  { status: "success" }.to_json
 end
