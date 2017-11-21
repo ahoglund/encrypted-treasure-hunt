@@ -1,7 +1,6 @@
 class EncryptedMessage
   ALPHA = (:a..:z).to_a
-  OMEGA = [ :e, :l, :v, :p, :o, :d, :c, :t, :y, :j, :r, :n, :h,
-            :w, :b, :f, :a, :z, :u, :i, :k, :s, :x, :q, :g, :m ]
+  OMEGA = ENV["OMEGA"].split(",").map(&:to_sym)
 
   def encrypt(message)
     message = message.split("").map(&:downcase)
