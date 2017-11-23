@@ -1,6 +1,12 @@
 require 'sinatra'
 require_relative 'encrypted_message'
 
+configure { set :server, :puma }
+
+get "/" do
+  render :html, :index
+end
+
 get "/hunt/:hunt_id" do
   filename = "treasure_hunt_#{params['hunt_id']}.txt"
   return { status: "error", message: "game not found" }.to_json unless File.exists?(filename)
