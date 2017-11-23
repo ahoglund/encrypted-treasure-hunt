@@ -1,6 +1,16 @@
 require 'sinatra'
 require_relative 'encrypted_message'
 
+get "/hunt/:hunt_id" do
+  filename = "treasure_hunt_#{params['hunt_id']}.txt"
+  return { status: "error", message: "game not found" }.to_json unless File.exists?(filename)
+  game = []
+  File.readlines(filename).each do |line|
+    game << EncryptedMessage.new.encrypt(line)
+  end
+
+  game.to_json
+end
 get "/encrypt/:message" do
   message = params['message']
   EncryptedMessage.new.encrypt(message).to_json
