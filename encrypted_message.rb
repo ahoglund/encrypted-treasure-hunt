@@ -1,5 +1,5 @@
 class EncryptedMessage
-  ALPHA = (:a..:z).to_a
+  ALPHA = (:a..:z).to_a + ["?", ":", ".", "'"]
   OMEGA = ENV["OMEGA"].split(",").map(&:to_sym)
 
   def encrypt(message)
