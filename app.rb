@@ -8,7 +8,7 @@ get "/" do
 end
 
 get "/hunt/:hunt_id" do
-  filename = "treasure_hunt_#{params['hunt_id']}.txt"
+  filename = "hunts/treasure_hunt_#{params['hunt_id']}.txt"
   return { status: "error", message: "game not found" }.to_json unless File.exists?(filename)
   game = []
   File.readlines(filename).each do |line|
