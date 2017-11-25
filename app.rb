@@ -11,8 +11,8 @@ get "/hunt/:hunt_id" do
   filename = "hunts/treasure_hunt_#{params['hunt_id']}.txt"
   return { status: "error", message: "game not found" }.to_json unless File.exists?(filename)
   game = []
-  File.readlines(filename).each do |line|
-    game << EncryptedMessage.new.encrypt(line)
+  File.readlines(filename).each_with_index do |line, index|
+    game << EncryptedMessage.new.encrypt(line).merge({id: index})
   end
 
   game.to_json
